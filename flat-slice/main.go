@@ -24,7 +24,7 @@ func main() {
 
 func FlattenSlice(s [][]int) []int {
 	var res []int
-	len := int(math.Ceil(float64(len(s)) / float64(2)))
+	len := int(math.Ceil(float64(len(s)) / float64(2))) // len is a built-in function name, please don't use it
 
 	for i := 0; i < len; i++ {
 		res = append(res, goForward(s, i)...)
