@@ -10,7 +10,7 @@ import (
 
 const consonants = "bcdfghjklmnpqrstvwxz"
 const suffix = "ay"
-const validationRegexp = "[^a-zA-Z .,!?-()]"
+const validationRegexp = "[^a-zA-Z .,!?-()]" // it's better to prepare a regexp object right here
 const punctuationMarks = " .,!?-()"
 
 func main() {
@@ -27,7 +27,7 @@ func main() {
 		}
 
 		fmt.Println("Your result: ", translate(input))
-		break
+		break // if you make only one scan, just don't use for-loop
 	}
 
 	if scanner.Err() != nil {
@@ -36,7 +36,7 @@ func main() {
 }
 
 func validInput(s string) bool {
-	match, _ := regexp.MatchString(validationRegexp, s)
+	match, _ := regexp.MatchString(validationRegexp, s) // it's better to have a regexp-object prepared previously, to make this heavy operation only once
 
 	return !match && len(s) > 0
 }
@@ -68,10 +68,10 @@ func translateToPigLatin(s string) string {
 
 
 	for i, v := range stringSlice {
-		if strings.Contains(consonants, v) || strings.Contains(strings.ToUpper(consonants), v) {
+		if strings.Contains(consonants, v) || strings.Contains(strings.ToUpper(consonants), v) { // you can just convert v to lower case and compare it to consonants
 			continue
-		} else {
-			stringSlice = append(stringSlice, stringSlice[:i]...)
+		} else { // you don't need else-clause here.
+			stringSlice = append(stringSlice, stringSlice[:i]...) // it's a bit strange to change iterated collection inside the loop. it works, but should be refactored
 			stringSlice = stringSlice[i:]
 
 			break
