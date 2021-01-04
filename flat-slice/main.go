@@ -24,9 +24,9 @@ func main() {
 
 func FlattenSlice(s [][]int) []int {
 	var res []int
-	len := int(math.Ceil(float64(len(s)) / float64(2)))
+	length := int(math.Ceil(float64(len(s)) / float64(2)))
 
-	for i := 0; i < len; i++ {
+	for i := 0; i < length; i++ {
 		res = append(res, goForward(s, i)...)
 		res = append(res, goBackward(s, i)...)
 	}
